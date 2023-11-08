@@ -32,8 +32,18 @@
 
         src = ./.;
 
-        buildInputs = with pkgs; [
-          dpkg
+        nativeBuildInputs = [
+          pkgs.dpkg
+          pkgs.autoPatchelfHook
+        ];
+
+        buildInputs = [
+          #Maybe need libs
+          pkgs.glfw
+          pkgs.xorg.libX11
+          pkgs.udev
+          pkgs.stdenv.cc.cc.libgcc
+          pkgs.stdenv.cc.cc.lib
         ];
 
         buildPhase = ''
@@ -87,7 +97,6 @@
           pkgs.libsoundio
           pkgs.libusb1
           pkgs.libjpeg
-          pkgs.opencv
           pkgs.libuuid
         ];
 
